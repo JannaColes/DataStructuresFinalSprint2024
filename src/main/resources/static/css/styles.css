@@ -1,14 +1,13 @@
-/* styles.css */
 body {
     font-family: Arial, sans-serif;
     line-height: 1.6;
-    color: #ff6600; /* Bright orange color */
-    background-color: #e0f7f7; /* Light teal background */
-    text-align: center; /* Center all content */
+    color: #ff6600;
+    background-color: #e0f7f7;
+    text-align: center;
 }
 
 h1 {
-    color: #ff6600; /* Bright orange color */
+    color: #ff6600;
     font-weight: bold;
 }
 
@@ -35,7 +34,7 @@ h1 {
 }
 
 button {
-    background-color: #ff6600; /* Bright orange color */
+    background-color: #ff6600;
     color: #fff;
     padding: 10px 20px;
     border: none;
@@ -46,5 +45,5 @@ button {
 }
 
 button:hover {
-    background-color: #cc5200; /* Darker shade of orange */
+    background-color: #cc5200;
 }

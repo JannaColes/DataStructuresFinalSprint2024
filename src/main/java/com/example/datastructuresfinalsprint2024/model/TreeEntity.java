@@ -1,10 +1,10 @@
 package com.example.datastructuresfinalsprint2024.model;
 
 import jakarta.persistence.*;
+import com.fasterxml.jackson.databind.ObjectMapper;
+
 import java.util.ArrayList;
 import java.util.List;
-import com.fasterxml.jackson.databind.ObjectMapper;
-import com.fasterxml.jackson.databind.node.ObjectNode;
 
 @Entity
 @Table(name = "tree_entity")
@@ -26,6 +26,8 @@ public class TreeEntity {
     private TreeNode root;
 
     public TreeEntity() {}
+
+
 
     public Long getId() {
         return id;
@@ -65,12 +67,22 @@ public class TreeEntity {
             return root;
         }
 
-        if (value < root.getValue()) {
+        if (value <= root.getValue()) {  // Allow duplicates
             root.setLeft(insertRec(root.getLeft(), value));
-        } else if (value > root.getValue()) {
+        } else {
             root.setRight(insertRec(root.getRight(), value));
         }
 
         return root;
+    }
+
+    public void buildTreeFromJson() throws Exception {
+        ObjectMapper mapper = new ObjectMapper();
+        this.root = mapper.readValue(this.treeStructure, TreeNode.class);
+    }
+
+    public void buildJsonFromTree() throws Exception {
+        ObjectMapper mapper = new ObjectMapper();
+        this.treeStructure = mapper.writeValueAsString(this.root);
     }
 }

@@ -5,7 +5,7 @@ public class BinaryNode {
     public BinaryNode left;
     public BinaryNode right;
 
-    public BinaryNode() {
+    public BinaryNode(int value) {
         this.value = value;
         this.left = null;
         this.right = null;

@@ -9,9 +9,13 @@ public class TreeNode {
     private TreeNode left;
     private TreeNode right;
 
+    public TreeNode() {}
+
     public TreeNode(Integer value) {
         this.value = value;
     }
+
+
 
     public Integer getValue() {
         return value;

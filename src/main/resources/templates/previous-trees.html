@@ -1,3 +1,4 @@
+<!-- previous-trees.html -->
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
@@ -14,7 +15,7 @@
     </tr>
     </thead>
     <tbody>
-    <tr th:each="treeEntity : ${trees}">
+    <tr th:each="treeEntity : ${previousTrees}">
         <td th:text="${treeEntity.numbers}"></td>
         <td>
             <pre th:text="${treeEntity.treeStructure}"></pre>
@@ -25,5 +26,6 @@
 <a href="/enter-numbers">Back</a>
 </body>
 </html>
+
 
 
