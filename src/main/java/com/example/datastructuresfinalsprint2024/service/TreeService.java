@@ -1,4 +1,3 @@
-// TreeService.java
 package com.example.datastructuresfinalsprint2024.service;
 
 import com.example.datastructuresfinalsprint2024.model.TreeEntity;
@@ -16,28 +15,12 @@ public class TreeService {
 
     public TreeEntity createTree(List<Integer> numbers) {
         TreeEntity tree = new TreeEntity();
-        for (Integer number : numbers) {
-            tree.insert(number);
-        }
         tree.setNumbers(numbers);
-        try {
-            tree.buildJsonFromTree();
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
         treeRepository.save(tree);
         return tree;
     }
 
     public List<TreeEntity> getPreviousTrees() {
-        List<TreeEntity> trees = treeRepository.findAll();
-        for (TreeEntity tree : trees) {
-            try {
-                tree.buildTreeFromJson();
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
-        }
-        return trees;
+        return treeRepository.findAll();
     }
 }
