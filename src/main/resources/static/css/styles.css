@@ -1,0 +1,50 @@
+/* styles.css */
+body {
+    font-family: Arial, sans-serif;
+    line-height: 1.6;
+    color: #ff6600; /* Bright orange color */
+    background-color: #e0f7f7; /* Light teal background */
+    text-align: center; /* Center all content */
+}
+
+h1 {
+    color: #ff6600; /* Bright orange color */
+    font-weight: bold;
+}
+
+.container {
+    width: 80%;
+    margin: auto;
+    overflow: hidden;
+}
+
+.header {
+    background: #333;
+    color: #fff;
+    padding: 10px 0;
+    text-align: center;
+}
+
+.content {
+    padding: 20px;
+    background: #fff;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    display: inline-block;
+    margin-top: 20px;
+}
+
+button {
+    background-color: #ff6600; /* Bright orange color */
+    color: #fff;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+button:hover {
+    background-color: #cc5200; /* Darker shade of orange */
+}

@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Previous Trees</title>
+    <link rel="stylesheet" href="/css/styles.css">
+</head>
+<body>
+<h1>Previous Trees</h1>
+<table border="1">
+    <thead>
+    <tr>
+        <th>Numbers</th>
+        <th>Tree</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="treeEntity : ${trees}">
+        <td th:text="${treeEntity.numbers}"></td>
+        <td>
+            <pre th:text="${treeEntity.treeStructure}"></pre>
+        </td>
+    </tr>
+    </tbody>
+</table>
+<a href="/enter-numbers">Back</a>
+</body>
+</html>
+
+
