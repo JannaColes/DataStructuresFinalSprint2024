@@ -4,6 +4,7 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import jakarta.persistence.*;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 @Entity
@@ -38,7 +39,7 @@ public class TreeEntity {
 
     public void setNumbers(List<Integer> numbers) {
         this.numbers = numbers;
-        this.root = buildTreeFromNumbers(numbers);
+        this.root = buildBalancedTree(numbers);
         this.treeStructure = serializeTree(root);
     }
 
@@ -75,24 +76,22 @@ public class TreeEntity {
         }
     }
 
-    private TreeNode buildTreeFromNumbers(List<Integer> numbers) {
-        TreeNode root = null;
-        for (Integer number : numbers) {
-            root = insertRec(root, number);
+    private TreeNode buildBalancedTree(List<Integer> numbers) {
+        if (numbers.isEmpty()) {
+            return null;
         }
-        return root;
+        Collections.sort(numbers); // Ensure the list is sorted
+        return buildBalancedTreeRecursive(numbers);
     }
 
-    private TreeNode insertRec(TreeNode root, Integer value) {
-        if (root == null) {
-            root = new TreeNode(value);
-            return root;
+    private TreeNode buildBalancedTreeRecursive(List<Integer> numbers) {
+        if (numbers.isEmpty()) {
+            return null;
         }
-        if (value < root.getValue()) {
-            root.setLeft(insertRec(root.getLeft(), value));
-        } else if (value > root.getValue()) {
-            root.setRight(insertRec(root.getRight(), value));
-        }
+        int mid = numbers.size() / 2;
+        TreeNode root = new TreeNode(numbers.get(mid));
+        root.setLeft(buildBalancedTreeRecursive(numbers.subList(0, mid)));
+        root.setRight(buildBalancedTreeRecursive(numbers.subList(mid + 1, numbers.size())));
         return root;
     }
 
