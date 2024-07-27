@@ -16,6 +16,7 @@ public class TreeEntity {
 
     @ElementCollection
     @CollectionTable(name = "tree_numbers", joinColumns = @JoinColumn(name = "tree_id"))
+    @OrderColumn(name = "position") // Preserve order
     @Column(name = "number")
     private List<Integer> numbers = new ArrayList<>();
 
