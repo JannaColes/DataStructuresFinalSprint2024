@@ -3,9 +3,7 @@ package com.example.datastructuresfinalsprint2024.model;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import jakarta.persistence.*;
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
+import java.util.*;
 
 @Entity
 @Table(name = "tree_entity")
@@ -38,9 +36,12 @@ public class TreeEntity {
     }
 
     public void setNumbers(List<Integer> numbers) {
-        this.numbers = numbers;
-        this.root = buildBalancedTree(numbers);
-        this.treeStructure = serializeTree(root);
+        // Remove duplicates
+        Set<Integer> uniqueNumbers = new HashSet<>(numbers);
+        this.numbers = new ArrayList<>(uniqueNumbers);
+        Collections.sort(this.numbers); // Ensure the list is sorted
+        this.root = buildBalancedTree(this.numbers);
+        this.treeStructure = serializeTree(this.root);
     }
 
     public TreeNode getRoot() {
@@ -80,7 +81,6 @@ public class TreeEntity {
         if (numbers.isEmpty()) {
             return null;
         }
-        Collections.sort(numbers); // Ensure the list is sorted
         return buildBalancedTreeRecursive(numbers);
     }
 
@@ -119,3 +119,4 @@ public class TreeEntity {
         }
     }
 }
+
