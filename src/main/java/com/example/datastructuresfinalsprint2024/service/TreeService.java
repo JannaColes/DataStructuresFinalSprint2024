@@ -16,11 +16,11 @@ public class TreeService {
     public TreeEntity createTree(List<Integer> numbers) {
         TreeEntity tree = new TreeEntity();
         tree.setNumbers(numbers);
-        return treeRepository.save(tree);
+        treeRepository.save(tree);
+        return tree;
     }
 
     public List<TreeEntity> getPreviousTrees() {
         return treeRepository.findAll();
     }
 }
-
