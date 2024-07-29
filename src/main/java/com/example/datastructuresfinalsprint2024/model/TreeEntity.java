@@ -3,9 +3,11 @@ package com.example.datastructuresfinalsprint2024.model;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import jakarta.persistence.*;
+
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Entity
 @Table(name = "tree_entity")
@@ -21,7 +23,7 @@ public class TreeEntity {
     @Column(name = "number")
     private List<Integer> numbers = new ArrayList<>();
 
-    @Column(name = "tree_structure")
+    @Column(name = "tree_structure", columnDefinition = "TEXT")
     private String treeStructure;
 
     @Transient
@@ -38,9 +40,9 @@ public class TreeEntity {
     }
 
     public void setNumbers(List<Integer> numbers) {
-        this.numbers = numbers;
-        this.root = buildBalancedTree(numbers);
-        this.treeStructure = serializeTree(root);
+        this.numbers = new ArrayList<>(numbers); // Ensure mutable list
+        this.root = buildBalancedTree(this.numbers);
+        this.treeStructure = serializeTree(this.root);
     }
 
     public TreeNode getRoot() {
@@ -80,8 +82,9 @@ public class TreeEntity {
         if (numbers.isEmpty()) {
             return null;
         }
-        Collections.sort(numbers); // Ensure the list is sorted
-        return buildBalancedTreeRecursive(numbers);
+        List<Integer> sortedNumbers = new ArrayList<>(numbers);
+        Collections.sort(sortedNumbers); // Ensure the list is sorted
+        return buildBalancedTreeRecursive(sortedNumbers);
     }
 
     private TreeNode buildBalancedTreeRecursive(List<Integer> numbers) {
@@ -119,3 +122,4 @@ public class TreeEntity {
         }
     }
 }
+
