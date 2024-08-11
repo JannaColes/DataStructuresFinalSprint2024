@@ -21,11 +21,11 @@ public class TreeService {
     public TreeEntity createTree(List<Integer> numbers) {
         TreeEntity tree = new TreeEntity();
 
-        // Handle duplicates
+
         Set<Integer> uniqueNumbers = new HashSet<>(numbers);
         tree.setNumbers(new ArrayList<>(uniqueNumbers)); // Ensure mutable list
 
-        // Save the tree entity
+
         treeRepository.save(tree);
         return tree;
     }
